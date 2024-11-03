@@ -24,6 +24,7 @@ function getHumanChoice () {
 
 
 function playRound (humanChoice, computerChoice) {
+
     if (humanChoice === "rock" && computerChoice === "scissors") {
         console.log(`${humanChoice} beats ${computerChoice}. You win!`);
         ++humanScore;
@@ -34,21 +35,33 @@ function playRound (humanChoice, computerChoice) {
         console.log(`${humanChoice} beats ${computerChoice}. You win!`);
         ++humanScore;
     } else if (humanChoice === computerChoice) {
-        return "Draw!"
+        console.log("Draw!");
     } else {
         console.log(`${computerChoice} beats ${humanChoice}. You lose!`);
         ++computerScore;
     }
 }
 
+
+function playGame (n) {
+    
+    for (let i = 1; i <= n; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    console.log(`User score: ${humanScore} \nComputer score: ${computerScore}`);
+
+}
+
 /* rock beats scissors; scissors beats paper; paper beats rock */
 
+numberOfRounds = parseInt(prompt("How many rounds do you want to play?"));
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+playGame(numberOfRounds);
 
-playRound(humanSelection, computerSelection);
-console.log(computerScore)
-console.log(humanScore)
+
+
 
 
