@@ -1,16 +1,14 @@
-console.log("Hello world")
-
 let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice () {
-    let rockv = 1;
-    let paperv = 2;
-    let scissorsv = 3;
+    let rockLimit = 1;
+    let paperLimit = 2;
+    let scissorsLimit = 3;
     choiceNum = Math.random() * 3;
-    if (choiceNum <= 1) {
+    if (choiceNum <= rockLimit) {
         return "rock";
-    } else if (choiceNum <= 2) {
+    } else if (choiceNum <= paperLimit) {
         return "paper";
     } else {
         return "scissors";
@@ -39,8 +37,10 @@ function playRound (humanChoice, computerChoice) {
     } else {
         console.log(`${computerChoice} beats ${humanChoice}. You lose!`);
         ++computerScore;
-    }
-}
+    };
+    
+    console.log(`User score: ${humanScore} \nComputer score: ${computerScore}`);
+};
 
 
 function playGame (n) {
@@ -53,13 +53,30 @@ function playGame (n) {
 
     console.log(`User score: ${humanScore} \nComputer score: ${computerScore}`);
 
-}
+};
 
 /* rock beats scissors; scissors beats paper; paper beats rock */
 
-numberOfRounds = parseInt(prompt("How many rounds do you want to play?"));
+// Event Listener
 
-playGame(numberOfRounds);
+const rockButton = document.querySelector("#rockButton");
+const paperButton = document.querySelector("#paperButton");
+const scissorsButton = document.querySelector("#scissorsButton");
+
+rockButton.addEventListener("click", () => {
+    playRound ("rock", getComputerChoice());
+});
+
+paperButton.addEventListener("click", () => {
+    playRound ("paper", getComputerChoice());
+});
+
+scissorsButton.addEventListener("click", () => {
+    playRound ("scissors", getComputerChoice());
+});
+
+
+
 
 
 
